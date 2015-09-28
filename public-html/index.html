@@ -7,9 +7,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
+        <link rel="stylesheet" type="text/css" href="css/application.css" />
     </head>
-    <body data-ng-app="">
-        <nav class="navbar navbar-inverse navbar-fixed-top">
+    <body data-ng-app="todo.app">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#todo-navbar-collapse-1" aria-expanded="false">
@@ -28,10 +29,8 @@
                     </ul>
                 </div>
             </div>
-        </nav>
-        <div class="container-fluid" data-ng-view="">
-
         </div>
+        <div class="container-fluid" data-ng-view=""></div>
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
