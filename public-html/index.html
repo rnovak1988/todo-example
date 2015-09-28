@@ -3,12 +3,44 @@
     <head>
         <title>Todo | Example</title>
         <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
+    </head>
+    <body data-ng-app="">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#todo-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#/" class="navbar-brand"><img alt="Robert-novak.com" rel="nofollow" height="25px" src="favicon.ico" /></a>
+                </div>
+                <div class="collapse navbar-collapse" id="todo-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                        <li><a href="logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+                        <li><a href="javascript:void(0)"><span class="glyphicon glyphicon-refresh"></span> Refresh</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid" data-ng-view="">
+
+        </div>
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    </head>
-    <body>
 
+        <!-- Angular -->
+        <script type="text/javascript" src="js/angular-1.4.3/angular.min.js"></script>
+        <script type="text/javascript" src="js/angular-1.4.3/angular-route.min.js"></script>
+        <script type="text/javascript" src="js/angular-1.4.3/angular-resource.min.js"></script>
+
+        <!-- Application -->
+        <script type="text/javascript" src="js/application.js"></script>
     </body>
 </html>
