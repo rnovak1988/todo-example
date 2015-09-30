@@ -3,7 +3,7 @@ DROP DATABASE IF EXISTS todo;
 CREATE DATABASE todo;
 
 CREATE TABLE `todo`.`users` (
-  `username` VARCHAR(60) NOT NULL,
+  `username` VARCHAR(60) NOT NULL UNIQUE,
   `password` VARCHAR(60) NOT NULL,
   `enabled` BOOLEAN NOT NULL DEFAULT FALSE,
   PRIMARY KEY (`username`)
@@ -22,9 +22,9 @@ CREATE TABLE `todo`.`tasks` (
   `completed` BOOLEAN NOT NULL DEFAULT FALSE,
   `archived` BOOLEAN NOT NULL DEFAULT FALSE,
   `title` VARCHAR(256) NOT NULL DEFAULT "",
-  `details` BLOB,
+  `details` TEXT,
   PRIMARY KEY (`id`),
-  INDEX (`username`),
+  INDEX (`username`, `archived`),
   FOREIGN KEY (`username`) REFERENCES `todo`.`users`(`username`)
 ) Engine = InnoDB, CHARACTER SET utf8;
 

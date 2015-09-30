@@ -22,6 +22,14 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/user/*</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/task</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/task/*</url-pattern>
+    </servlet-mapping>
 
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
