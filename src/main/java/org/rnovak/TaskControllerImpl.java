@@ -80,6 +80,7 @@ public class TaskControllerImpl implements TaskController {
 
     @Override
     public HttpEntity<List<Task>> list(boolean archived) {
+        logger.error("WTF");
         List<Task> result = new LinkedList<>();
 
         Connection connection = null; PreparedStatement sth = null; ResultSet rth = null;

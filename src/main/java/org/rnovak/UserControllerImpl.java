@@ -146,7 +146,7 @@ public class UserControllerImpl implements UserController {
                             String username = rth.getString("username");
                             int enabled = rth.getInt("enabled");
 
-                            Map tmp = new HashMap<>();
+                            Map<String, Object> tmp = new HashMap<>();
                             tmp.put("username", username);
                             tmp.put("enabled", enabled > 0);
 
