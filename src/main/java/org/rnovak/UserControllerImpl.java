@@ -29,7 +29,7 @@ public class UserControllerImpl implements UserController {
     private DataSource dataSource;
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
-    private static final String CREATE_QUERY = "INSERT INTO todo.users (username, password, enabled) VALUES (?, ?, ?)";
+    private static final String CREATE_QUERY = "INSERT INTO todo.users (username, password, enabled) VALUES (?, ?, 1)";
     private static final String AUTH_QUERY = "INSERT INTO todo.authorities (username, authority) VALUES (?, 'ROLE_USER')";
 
     private static final String SELECT_STATEMENT = "SELECT u.username AS username, u.enabled AS enabled FROM todo.users u";
