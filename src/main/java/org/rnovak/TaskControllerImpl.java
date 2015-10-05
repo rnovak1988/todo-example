@@ -21,10 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.sql.DataSource;
 import java.io.UnsupportedEncodingException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -150,7 +147,7 @@ public class TaskControllerImpl implements TaskController {
 
         try {
             if ((connection = dataSource.getConnection()) != null && connection.isValid(2000)) {
-                sth = connection.prepareStatement(INSERT_QUERY);
+                sth = connection.prepareStatement(INSERT_QUERY, Statement.RETURN_GENERATED_KEYS);
 
                 sth.setString(1, currentUsername);
                 sth.setString(2, title);
@@ -200,7 +197,7 @@ public class TaskControllerImpl implements TaskController {
 
         try {
             if ((connection = dataSource.getConnection()) != null && connection.isValid(2000)) {
-                sth = connection.prepareStatement(UPDATE_QUERY);
+                sth = connection.prepareStatement(UPDATE_QUERY, Statement.RETURN_GENERATED_KEYS);
 
                 sth.setString(1, title);
                 sth.setString(2, new String(Base64.encodeBase64(details.getBytes("UTF-8")), "UTF-8"));
