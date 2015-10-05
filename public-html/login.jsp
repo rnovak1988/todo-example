@@ -46,7 +46,7 @@
             <div class="row">
                 <div class="col-xs-12 col-md-4 col-md-push-4 panel panel-default">
                     <div class="panel-body">
-                        <form action="/todo/login" method="POST" class="form-signin">
+                        <form action="/login" method="POST" class="form-signin">
                             <h2 class="form-signin-heading">Please Sign In</h2>
                             <label for="username" class="sr-only">Email address</label>
                             <input type="text" id="username" name="username" class="form-control" placeholder="Email address" required autofocus>
