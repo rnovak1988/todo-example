@@ -30,6 +30,16 @@
                 </div>
             </div>
         </div>
+        <div class="container-fluid" data-ng-controller="taskController">
+            <div class="col-xs-12 col-md-4 col-md-push-4 panel panel-default">
+                <div class="panel-body">
+                    <input type="text" class="form-control" placeholder="Title" data-ng-model="temp.title" />
+                    <div class="btn-group btn-group-justified" role="group">
+                        <div class="btn btn-success" data-ng-click="createNewTask()">Create</div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container-fluid" data-ng-view=""></div>
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>

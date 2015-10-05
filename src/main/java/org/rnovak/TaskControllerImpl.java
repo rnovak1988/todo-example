@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -131,7 +132,14 @@ public class TaskControllerImpl implements TaskController {
 
     @Override
     @Transactional
-    public HttpEntity<Task> put(String title, String details) {
+    public HttpEntity<Task> put(@RequestBody Task task) {
+
+
+        String title = task.getTitle();
+        String details = task.getDetails();
+
+        logger.error("Title: " + title);
+        logger.error("Details: " + details);
         Task result = new Task(null, title, details, false, false);
 
         String currentUsername = this.getUsername();    // Get the name of the logged in user
@@ -174,7 +182,9 @@ public class TaskControllerImpl implements TaskController {
 
     @Override
     @Transactional
-    public HttpEntity<Task> post(Integer id, String title,String details, boolean completed, boolean archived) {
+    public HttpEntity<Task> post(@RequestBody Task task) {
+        Integer id = task.id; String title = task.getTitle(); String details = task.getDetails(); boolean completed = task.isCompleted();
+        boolean archived = task.isArchived();
 
         if (id == null || title == null || details == null) throw new AssertionError("Can't Have Null values");
 
@@ -193,7 +203,7 @@ public class TaskControllerImpl implements TaskController {
                 sth.setString(1, title);
                 sth.setString(2, new String(Base64.encodeBase64(details.getBytes("UTF-8")), "UTF-8"));
                 sth.setInt(3, completed ? 1 : 0);
-                sth.setInt(4, completed ? 1 : 0);
+                sth.setInt(4, archived ? 1 : 0);
 
                 sth.setInt(5, id);
                 sth.setString(6, username);
