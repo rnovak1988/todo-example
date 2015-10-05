@@ -165,6 +165,8 @@ public class TaskControllerImpl implements TaskController {
 
                 rth = sth.getGeneratedKeys();
 
+                if (rth == null) logger.error("Returned keys shouldn't be null");
+
                 if (rth != null) while (rth.next()) {
                     result.setId(rth.getInt(1));
                     break;
