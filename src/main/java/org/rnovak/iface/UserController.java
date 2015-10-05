@@ -20,10 +20,10 @@ public interface UserController {
     );
 
     @RequestMapping(value="/current", method = {RequestMethod.GET})
-    public HttpEntity<String> current();
+    public HttpEntity<Map<String, String>> current();
 
     @RequestMapping(value="/current/role", method={RequestMethod.GET})
-    public HttpEntity<String> currentRole();
+    public HttpEntity<Map<String, String>> currentRole();
 
     @RequestMapping(value = "/new", method = {RequestMethod.GET})
     public HttpEntity<Boolean> createUser(

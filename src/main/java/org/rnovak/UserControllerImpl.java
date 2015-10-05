@@ -183,7 +183,7 @@ public class UserControllerImpl implements UserController {
         return new ResponseEntity<List<Map<String, Object>>>(result, HttpStatus.OK);
     }
 
-    public HttpEntity<String> current() {
+    public HttpEntity<Map<String, String>> current() {
         String username = "";
         SecurityContext currentContext = null;
         Authentication currentAuth = null;
@@ -203,11 +203,12 @@ public class UserControllerImpl implements UserController {
             logger.error(e.getLocalizedMessage(), e);
             username = "";
         }
-
-        return new ResponseEntity<String>(String.format("\"%s\"", username), HttpStatus.OK);
+        Map<String, String> result = new LinkedHashMap<>();
+        result.put("username", username);
+        return new ResponseEntity<Map<String, String>>(result, HttpStatus.OK);
     }
 
-    public HttpEntity<String> currentRole() {
+    public HttpEntity<Map<String, String>> currentRole() {
         String role = null;
         SecurityContext currentContext = null;
         Authentication currentAuth = null;
@@ -233,8 +234,9 @@ public class UserControllerImpl implements UserController {
             logger.error(e.getLocalizedMessage(), e);
             role = "ROLE_USER";
         }
-
-        return new ResponseEntity<String>(String.format("\"%s\"", role), HttpStatus.OK);
+        Map<String, String> result = new LinkedHashMap<>();
+        result.put("role", role);
+        return new ResponseEntity<Map<String, String>>(result, HttpStatus.OK);
     }
 
     @Autowired
