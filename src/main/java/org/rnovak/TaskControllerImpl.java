@@ -29,7 +29,7 @@ public class TaskControllerImpl implements TaskController {
 
     private static final Logger logger = Logger.getLogger(TaskControllerImpl.class);
 
-    private static final String DEFAULT_USERNAME = "rnovak";
+    private static final String DEFAULT_USERNAME = "admin";
 
     private static final String SELECT_QUERY = "SELECT t.title, t.details, t.completed, t.archived FROM todo.tasks t WHERE t.id = ? AND t.username = ?";
 
