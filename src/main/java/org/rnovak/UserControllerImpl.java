@@ -7,6 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,16 +22,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class UserControllerImpl implements UserController {
 
     private static final Logger logger = Logger.getLogger(UserController.class);
 
     private DataSource dataSource;
+
+    private SecurityContextHolder securityContextHolder;
+
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     private static final String CREATE_QUERY = "INSERT INTO todo.users (username, password, enabled) VALUES (?, ?, 1)";
@@ -178,8 +183,67 @@ public class UserControllerImpl implements UserController {
         return new ResponseEntity<List<Map<String, Object>>>(result, HttpStatus.OK);
     }
 
+    public HttpEntity<String> current() {
+        String username = "";
+        SecurityContext currentContext = null;
+        Authentication currentAuth = null;
+        UserDetails userDetails = null;
+
+        try {
+            currentContext = securityContextHolder.getContext();
+            currentAuth = currentContext.getAuthentication();
+
+            Object principal = currentAuth.getPrincipal();
+
+            userDetails = UserDetails.class.cast(principal);
+
+            username = userDetails.getUsername();
+
+        } catch (NullPointerException|ClassCastException e) {
+            logger.error(e.getLocalizedMessage(), e);
+            username = "";
+        }
+
+        return new ResponseEntity<String>(username, HttpStatus.OK);
+    }
+
+    public HttpEntity<String> currentRole() {
+        String role = null;
+        SecurityContext currentContext = null;
+        Authentication currentAuth = null;
+        UserDetails userDetails = null;
+
+        try {
+            currentContext = securityContextHolder.getContext();
+            currentAuth = currentContext.getAuthentication();
+
+            Object principal = currentAuth.getPrincipal();
+
+            userDetails = UserDetails.class.cast(principal);
+
+            Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
+
+            for (GrantedAuthority authority : authorities)
+                if (authority.getAuthority().contains("ADMIN"))
+                    role = authority.getAuthority();
+
+            if (role == null) role = "ROLE_USER";
+
+        } catch (NullPointerException|ClassCastException e) {
+            logger.error(e.getLocalizedMessage(), e);
+            role = "ROLE_USER";
+        }
+
+        return new ResponseEntity<String>(role, HttpStatus.OK);
+    }
+
     @Autowired
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
+    }
+
+    @Autowired
+    public void setSecurityContextHolder(SecurityContextHolder securityContextHolder) {
+        this.securityContextHolder = securityContextHolder;
     }
 }

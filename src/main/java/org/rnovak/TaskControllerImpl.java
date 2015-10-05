@@ -215,6 +215,8 @@ public class TaskControllerImpl implements TaskController {
             }
         } catch (SQLException|UnsupportedEncodingException e) {
             logger.error(e.getLocalizedMessage(), e);
+            result = null;
+            return new ResponseEntity<Task>(result, HttpStatus.INTERNAL_SERVER_ERROR);
         } finally {
             closeAll(connection, sth, null);
         }

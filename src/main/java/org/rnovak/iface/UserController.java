@@ -19,6 +19,12 @@ public interface UserController {
             @RequestParam (value="msg", required=false)     String msg
     );
 
+    @RequestMapping(value="/current", method = {RequestMethod.GET})
+    public HttpEntity<String> current();
+
+    @RequestMapping(value="/current/role", method={RequestMethod.GET})
+    public HttpEntity<String> currentRole();
+
     @RequestMapping(value = "/new", method = {RequestMethod.GET})
     public HttpEntity<Boolean> createUser(
             @RequestParam(value="username", required=true) String username,
