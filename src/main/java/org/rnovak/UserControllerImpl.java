@@ -204,7 +204,7 @@ public class UserControllerImpl implements UserController {
             username = "";
         }
 
-        return new ResponseEntity<String>(username, HttpStatus.OK);
+        return new ResponseEntity<String>(String.format("\"%s\"", username), HttpStatus.OK);
     }
 
     public HttpEntity<String> currentRole() {
@@ -234,7 +234,7 @@ public class UserControllerImpl implements UserController {
             role = "ROLE_USER";
         }
 
-        return new ResponseEntity<String>(role, HttpStatus.OK);
+        return new ResponseEntity<String>(String.format("\"%s\"", role), HttpStatus.OK);
     }
 
     @Autowired
