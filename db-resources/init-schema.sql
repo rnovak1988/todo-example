@@ -28,4 +28,7 @@ CREATE TABLE `todo`.`tasks` (
   FOREIGN KEY (`username`) REFERENCES `todo`.`users`(`username`)
 ) Engine = InnoDB, CHARACTER SET utf8;
 
+INSERT INTO `todo`.`users` (`username`, `password`, `enabled`) VALUES ('admin', '$2a$10$YML4a/EHXCxnAh.d8c8T6ePDRlhXbRtJVBKwbp5e6gJTl3jrnxPQm', 1);
+INSERT INTO `todo`.`authorities` (`username`, `authority`) VALUES ('admin', 'ROLE_USER'), ('admin', 'ROLE_ADMIN');
+
 
