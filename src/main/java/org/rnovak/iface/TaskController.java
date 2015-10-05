@@ -20,7 +20,7 @@ public interface TaskController {
 
     @RequestMapping(value="/task", method= RequestMethod.PUT)
     public HttpEntity<Task> put(
-        @RequestParam(value="") Task task
+        @RequestBody Task task
     );
 
     @RequestMapping(value="/task", method=RequestMethod.POST)
