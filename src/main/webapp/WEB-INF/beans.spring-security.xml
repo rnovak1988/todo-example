@@ -36,7 +36,7 @@
     <sec:http pattern="/favicon.ico" security="none" />
     <sec:http use-expressions="true">
         <sec:intercept-url pattern="/user/login" access="isAnonymous()" />
-        <sec:intercept-url pattern="/admin.html" access="hasRole('ROLE_ADMIN')" />
+        <sec:intercept-url pattern="/user/admin/**" access="hasRole('ROLE_ADMIN')" />
         <sec:intercept-url pattern="/user/**" access="hasRole('ROLE_ADMIN')" />
         <sec:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
         <sec:form-login login-page="/user/login" login-processing-url="/login" authentication-failure-url="/user/login?error=true" default-target-url="/" always-use-default-target="true" />

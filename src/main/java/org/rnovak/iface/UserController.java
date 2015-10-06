@@ -19,6 +19,9 @@ public interface UserController {
             @RequestParam (value="msg", required=false)     String msg
     );
 
+    @RequestMapping(value="/admin/")
+    public ModelAndView admin();
+
     @RequestMapping(value="/current", method = {RequestMethod.GET})
     public HttpEntity<Map<String, String>> current();
 

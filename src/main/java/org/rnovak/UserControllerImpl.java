@@ -41,6 +41,17 @@ public class UserControllerImpl implements UserController {
 
     private static final String ERROR_STRING = "Should Not Be Returning Results on INSERT";
 
+    private static final ModelAndView adminView = new ModelAndView();
+
+    static {
+        adminView.setViewName("/admin.html");
+    }
+
+    @Override
+    public ModelAndView admin() {
+        return adminView;
+    }
+
     @Override
     public ModelAndView login(@RequestParam(value = "error", required = false) String error, @RequestParam(value = "msg", required = false) String msg) {
         ModelAndView result = new ModelAndView();
