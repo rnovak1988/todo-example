@@ -1,7 +1,9 @@
 package org.rnovak.iface;
 
+import org.rnovak.User;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,10 +30,9 @@ public interface UserController {
     @RequestMapping(value="/current/role", method={RequestMethod.GET})
     public HttpEntity<Map<String, String>> currentRole();
 
-    @RequestMapping(value = "/new", method = {RequestMethod.GET})
+    @RequestMapping(value = "/new", method = {RequestMethod.PUT})
     public HttpEntity<Boolean> createUser(
-            @RequestParam(value="username", required=true) String username,
-            @RequestParam(value="password", required=true) String password
+        @RequestBody User user
     );
 
     @RequestMapping(value="/list", method= {RequestMethod.GET})

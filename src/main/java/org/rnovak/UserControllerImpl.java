@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -66,10 +67,11 @@ public class UserControllerImpl implements UserController {
     @Override
     @Transactional
     public HttpEntity<Boolean> createUser(
-            @RequestParam(value = "username", required = true) String username,
-            @RequestParam(value = "password", required = true) String password
+        @RequestBody User user
     )
     {
+        String username = user.getUsername();
+        String password = user.getPassword();
         boolean result = false;
 
             // Get rid of the password in memory
