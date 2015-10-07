@@ -1,1 +1,3 @@
 body { padding-top:70px; }
+
+div.task-list div.task div.btn { position:relative; top:-3px;}

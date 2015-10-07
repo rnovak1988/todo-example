@@ -1,0 +1,12 @@
+<div class="alert {{task.isCompleted ? 'alert-success' : 'alert-info'}} task">
+    {{task.title}}
+    <div class="btn btn-sm pull-right"
+         data-ng-click="archiveTask(task)" >
+        <span class="glyphicon glyphicon-trash"></span>
+    </div>
+    <div class="btn btn-sm pull-right"
+         data-ng-click="completeTask(task)"
+         title="{{task.isCompleted ? 'Incomplete?' : 'Complete?'}}">
+        <span class="glyphicon {{task.isCompleted ? 'glyphicon-minus' : 'glyphicon-ok'}}"></span>
+    </div>
+</div>

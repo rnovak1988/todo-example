@@ -1,6 +1,6 @@
 (function() {
 
-    var directive = angular.module("todo.nav-bar", ["ngRoute", "ngResource", "todo.data-user"]);
+    var directive = angular.module("todo.nav-template", ["ngRoute", "ngResource", "todo.data-user"]);
 
     var navController = function($scope, userService) {
 
