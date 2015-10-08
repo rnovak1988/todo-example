@@ -28,7 +28,11 @@ CREATE TABLE `todo`.`tasks` (
   FOREIGN KEY (`username`) REFERENCES `todo`.`users`(`username`)
 ) Engine = InnoDB, CHARACTER SET utf8;
 
-INSERT INTO `todo`.`users` (`username`, `password`, `enabled`) VALUES ('admin', '$2a$10$YML4a/EHXCxnAh.d8c8T6ePDRlhXbRtJVBKwbp5e6gJTl3jrnxPQm', 1);
-INSERT INTO `todo`.`authorities` (`username`, `authority`) VALUES ('admin', 'ROLE_USER'), ('admin', 'ROLE_ADMIN');
+INSERT INTO `todo`.`users` (`username`, `password`, `enabled`) VALUES
+  ('me@robert-novak.com', '$2a$10$/omUgl/U1ca9ayva221rUe1Pd.G/tDQmuFr1lCpwRqOfDS5OHXFcq', 1),
+  ('example@robert-novak.com', '2a$10$G7Tgq.z6K96uSI9kGVAWEeUQwOr/UVU1fSfPKlIbAY0N1lsxrMHcC', 1);
+INSERT INTO `todo`.`authorities` (`username`, `authority`) VALUES
+  ('me@robert-novak.com', 'ROLE_USER'), ('me@robert-novak.com', 'ROLE_ADMIN'),
+  ('example@robert-novak.com', 'ROLE_USER');
 
 
